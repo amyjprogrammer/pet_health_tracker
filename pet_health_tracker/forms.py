@@ -1,0 +1,43 @@
+from django import forms
+
+from .models import PetInfo, HealthTracker
+
+class PetInfoForm(forms.ModelForm):
+    class Meta:
+        model = PetInfo
+        fields = [
+            'pet_name', 'pet_species', 'pet_sex', 'pet_breed', 'pet_color', 'starting_weight', 'pet_birthday', 'pet_allergies',  'pet_primary_vet',
+        ]
+        labels = {
+            'pet_name': 'Name',
+            'pet_species': 'Species',
+            'pet_sex': 'Sex',
+            'pet_breed': 'Breed',
+            'pet_color': 'Color',
+            'starting_weight': 'Weight',
+            'pet_birthday': 'Birthday',
+            'pet_allergies': 'Allergies',
+            'pet_primary_vet': 'Primary Vet',
+        }
+
+class HealthTrackerForm(forms.ModelForm):
+    class Meta:
+        model = HealthTracker
+        fields = '__all__'
+        labels = {
+            'tracking_type': "Tracking Choice",
+            'pet_weight': 'Weight',
+            'pet_temp': 'Temp',
+            'solid_stool': 'Solid Stool',
+            'healthy_appetite': 'Healthy Appetite',
+            'healthy_coat': 'Healthy Coat',
+            'range_of_motion_exercises': 'Range of motion exercises',
+            'ongoing_meds': 'Ongoing Medication',
+            'pet_glucose': 'Glucose Number',
+            'acupuncture': 'Acupuncture',
+            'laser_therapy': 'Laser Therapy',
+            'adjustment': 'Adjustment',
+            'surgery': 'Surgery',
+            'special_notes_for_next_time': 'Special notes for next time',
+            'notes': 'Notes'
+        }

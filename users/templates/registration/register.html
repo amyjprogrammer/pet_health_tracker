@@ -1,0 +1,14 @@
+{% extends "pet_health_tracker/base.html" %}
+
+{% block content %}
+
+  <form action="{% url 'users:register' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button class="btn btn-primary" name="submit" type= "button">Register</button>
+    <input type="hidden" name="next" value="{% url 'pet_health_tracker:home' %}">
+
+  </form>
+
+{% endblock content %}
