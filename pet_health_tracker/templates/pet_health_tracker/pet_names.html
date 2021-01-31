@@ -1,14 +1,14 @@
 {% extends 'pet_health_tracker/base.html' %}
 
 {% block title %}
-  Health Tracker
+  Pet
 {% endblock title %}
 
 {% block content %}
 
   {% for pet in pet_names %}
     <h6 class="display-6">
-      <a href="#">{{ pet }}</a>
+      <a href="{% url "pet_health_tracker:pet_health" pet.id %}">{{ pet }}</a>
     </h6>
   {% empty %}
     <h2>No pets have been added to your account yet.</h2>
@@ -16,7 +16,7 @@
 
 
   <div class="d-grid gap-2 col-6 mx-auto">
-    <a class="btn btn-secondary" href="#" role='button' data-bs-toggle="button" autocomplete="off">Add a pet</a>
+    <a class="btn btn-secondary" href="#" role='button' data-bs-toggle="button" autocomplete="off">Add a new pet</a>
   </div>
 
 
