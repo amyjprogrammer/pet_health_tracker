@@ -29,7 +29,8 @@ def pet_health(request, pet_id):
     pet_name = get_object_or_404(PetInfo, id=pet_id)
     check_pet_owner(request, pet_name.owner)
     health_trackers = pet_name.healthtracker_set.order_by('date_added')
-    context = {'pet_name': pet_name, 'health_trackers': health_trackers}
+    latest_health_tracker = pet_name.healthtracker_set.order_by('-date_added').all()[:1]
+    context = {'pet_name': pet_name, 'health_trackers': health_trackers, 'latest_health_tracker': latest_health_tracker}
     return render(request, 'pet_health_tracker/pet_health.html', context)
 
 @login_required

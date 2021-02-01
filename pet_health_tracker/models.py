@@ -57,7 +57,5 @@ class HealthTracker(models.Model):
     laser_therapy = models.BooleanField(default=False)
     adjustment = models.BooleanField(default=False)
     surgery = models.BooleanField(default=False)
-    special_notes_for_next_time = models.CharField(max_length=200)
-    notes = models.TextField()
-
-    
+    special_notes_for_next_time = models.CharField(max_length=200, blank=True, null=True)
+    notes = models.TextField(blank=True, null=True)
