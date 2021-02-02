@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 
+from .utils import get_plot
 from .models import PetInfo, HealthTracker
 from .forms import PetInfoForm, HealthTrackerForm
 
@@ -44,3 +45,15 @@ def check_pet_owner(request, owner):
     """makes sure editor or viewer is the owner"""
     if owner!= request.user:
         raise Http404
+
+@login_required
+def weight_bar_chart(request, pet_id):
+    """bar chart showing the weights listed in forms"""
+    pet_info = get_object_or_404(PetInfo, id=pet_id)
+    check_pet_owner(request, qs.owner)
+    qs = pet_info.healthtracker_set.order_by('date_added')
+    x = [x.date_added for x in qs]
+    y = [y.pet_weight for y in qs]
+    chart = get_plot(x,y)
+    context = {'chart': chart}
+    return render(request, 'pet_health_tracker/pet_health.html', context)
