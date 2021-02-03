@@ -12,4 +12,5 @@ urlpatterns = [
     path('pet_health/<int:pet_id>/', views.pet_health, name='pet_health'),
     path('pet_form/<int:pet_id>/', views.pet_form, name='pet_form'),
     path('add_pet/<int:pet_id>/', views.add_pet, name='add_pet'),
+    path('chart_weight_data/<str:pet>/', views.chart_weight_data, name='chart_weight_data'),
     ]

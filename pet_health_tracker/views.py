@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
-from .utils import get_plot
 from .models import PetInfo, HealthTracker
 from .forms import PetInfoForm, HealthTrackerForm
 
@@ -47,13 +47,15 @@ def check_pet_owner(request, owner):
         raise Http404
 
 @login_required
-def weight_bar_chart(request, pet_id):
-    """bar chart showing the weights listed in forms"""
-    pet_info = get_object_or_404(PetInfo, id=pet_id)
-    check_pet_owner(request, qs.owner)
-    qs = pet_info.healthtracker_set.order_by('date_added')
-    x = [x.date_added for x in qs]
-    y = [y.pet_weight for y in qs]
-    chart = get_plot(x,y)
-    context = {'chart': chart}
-    return render(request, 'pet_health_tracker/pet_health.html', context)
+def chart_weight_data(request,pet):
+    pet_name = get_object_or_404(PetInfo, id=pet)
+    check_pet_owner(request, pet_name.owner)
+    health_trackers = pet_name.healthtracker_set.order_by('date_added')
+    weight_info = []
+
+    for info in health_trackers:
+        date_add = info.date_added
+        x_date = date_add.strftime('%m-%d-%Y')
+        weight_info.append({x_date:info.pet_weight})
+
+    return JsonResponse(weight_info, safe=False)
