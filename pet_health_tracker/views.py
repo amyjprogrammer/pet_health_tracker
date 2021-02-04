@@ -18,9 +18,21 @@ def pet_names(request):
     return render(request, 'pet_health_tracker/pet_names.html', context)
 
 @login_required
-def add_pet(request, pet_id):
+def add_pet(request):
     """form to add a pet"""
+    if request.method != 'POST':
+        #no data submitted; creating a blank form
+        form = PetInfoForm()
+    else:
+        #creating a new pet and verifying the data
+        form = PetInfoForm(data=request.POST)
+        if form.is_valid():
+            add_pet = form.save(commit=False)
+            add_pet.owner = request.user
+            add_pet.save()
+            return redirect('pet_health_tracker:pet_names')
 
+    context = {'form': form}
     return render(request, 'pet_health_tracker/add_pet.html', context)
 
 
@@ -35,10 +47,24 @@ def pet_health(request, pet_id):
     return render(request, 'pet_health_tracker/pet_health.html', context)
 
 @login_required
-def pet_form(request, pet_id):
+def pet_tracker(request, pet_id):
     """option to add a new health form"""
+    pet_name = get_object_or_404(PetInfo, id=pet_id)
+    check_pet_owner(request, pet_name.owner)
 
-    return render(request, 'pet_health_tracker/pet_form.html', context)
+    if request.method != 'POST':
+        #show empty form.  Allow user to enter info
+        form = HealthTrackerForm()
+    else:
+        form = HealthTrackerForm(data=request.POST)
+        if form.is_valid():
+            pet_tracker = form.save(commit=False)
+            pet_tracker.pet_name = pet_name
+            pet_tracker.save()
+            return redirect('pet_health_tracker:pet_health', pet_id=pet.id)
+
+    context = {'pet_name': pet_name, 'form': form}
+    return render(request, 'pet_health_tracker/pet_tracker.html', context)
 
 @login_required
 def check_pet_owner(request, owner):

@@ -1,7 +1,22 @@
 {% extends 'pet_health_tracker/base.html' %}
 
+{% block title %}Add pet {% endblock title %}
+
 {% block content %}
 
-<h1>Coming Soon!</h1>
+<div class="d-grid gap-2 col-6 mx-auto">
+  <a class="btn btn-secondary" href="{% url 'pet_health_tracker:pet_names' %}" >Home</a>
+</div>
+
+  <form action="{% url 'pet_health_tracker:add_pet' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p}}
+
+      <button class="btn btn-outline-primary" name="submit">Add pet</button>
+
+
+  </form>
+
+
 
 {% endblock content %}
