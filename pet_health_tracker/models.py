@@ -46,7 +46,7 @@ class HealthTracker(models.Model):
         default=Daily_Tracking
     )
     pet_weight = models.IntegerField(blank=True, null=True)
-    pet_temp = models.DecimalField(blank=True, decimal_places=2, max_digits=5, null=True)
+    pet_temp = models.FloatField(blank=True, null=True)
     solid_stool = models.BooleanField(default=True)
     healthy_appetite = models.BooleanField(default=True)
     healthy_coat = models.BooleanField(default=True)

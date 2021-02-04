@@ -59,3 +59,17 @@ def chart_weight_data(request,pet):
         weight_info.append({x_date:info.pet_weight})
 
     return JsonResponse(weight_info, safe=False)
+
+@login_required
+def chart_temp_data(request,pet):
+    pet_name = get_object_or_404(PetInfo, id=pet)
+    check_pet_owner(request, pet_name.owner)
+    health_trackers = pet_name.healthtracker_set.order_by('date_added')
+    temp_info = []
+
+    for info in health_trackers:
+        date_adds = info.date_added
+        date = date_adds.strftime('%m-%d-%Y')
+        temp_info.append({date:info.pet_temp})
+
+    return JsonResponse(temp_info, safe=False)

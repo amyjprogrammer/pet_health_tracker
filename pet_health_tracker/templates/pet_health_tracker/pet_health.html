@@ -185,16 +185,73 @@
                                           }
 
                                         </script>
-                                      <canvas id="myAreaChart" width="100%" height="35"></canvas></div>
+                                      <canvas id="myChart" width="100%" height="35"></canvas></div>
                                 </div>
                             </div>
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-bar mr-1"></i>
-                                        Bar Chart Example
+                                        Temperature
                                     </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                                    <div id="myTempChart"></div>
+                                    <div class="card-body">
+                                      <script>
+
+                                        var info ={
+                                          "x":[],
+                                          "y":[],
+                                        }
+
+
+
+                                        var dataURL = '/chart_temp_data/{{pet_name.id}}'
+                                        var dataDjango = "{{temp_info}}"
+
+
+                                        $.ajax({
+                                            method: "GET",
+                                            url:dataURL,
+                                            success: function (response){
+                                              console.log('RESPONSE:', response)
+                                              for (var i in response){
+
+                                                var key = Object.keys(response[i])[0]
+                                                var value = Object.values(response[i])[0]
+
+                                                info.x.push(key)
+                                                info.y.push(value)
+                                              }
+                                              console.log("INFO:", info)
+                                              build_Chart()
+
+                                            },
+                                          })
+
+                                          function build_Chart(){
+
+                                            var chart_Data = {
+                                              "type": "line",
+
+                                                "scale-x":{
+                                                  "values":info.x
+                                                },
+                                                "series":[
+                                                  {
+                                                    "values":info.y
+                                                  }
+                                                ]
+
+                                            }
+                                            zingchart.render({
+                                              id: 'myTempChart',
+                                              data: chart_Data,
+                                            });
+                                          }
+
+                                        </script>
+
+                                      <canvas id="myTempChart" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
                         </div>
