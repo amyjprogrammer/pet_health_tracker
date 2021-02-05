@@ -4,7 +4,7 @@
 
 {% block content %}
 
-  <form action="{% url 'pet_health_tracker:add_pet' %}" method="post">
+  <form action="{% url 'pet_health_tracker:pet_tracker' pet_name.id %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
 
