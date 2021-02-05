@@ -24,7 +24,7 @@ class HealthTrackerForm(forms.ModelForm):
     class Meta:
         model = HealthTracker
         fields= [
-            'pet_name', 'tracking_type', 'pet_weight', 'pet_temp', 'solid_stool', 'healthy_appetite', 'healthy_coat', 'range_of_motion_exercises', 'ongoing_meds', 'pet_glucose', 'acupuncture', 'laser_therapy', 'adjustment', 'surgery', 'special_notes_for_next_time', 'notes',
+            'tracking_type', 'pet_weight', 'pet_temp', 'solid_stool', 'healthy_appetite', 'healthy_coat', 'range_of_motion_exercises', 'ongoing_meds', 'pet_glucose', 'acupuncture', 'laser_therapy', 'adjustment', 'surgery', 'special_notes_for_next_time', 'notes',
         ]
         labels = {
             'tracking_type': "Tracking Choice",
