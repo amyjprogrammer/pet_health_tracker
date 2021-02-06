@@ -61,7 +61,7 @@ def pet_tracker(request, pet_id):
             pet_tracker = form.save(commit=False)
             pet_tracker.pet_name = pet_name
             pet_tracker.save()
-            return redirect('pet_health_tracker:pet_health', pet_id=pet.id)
+            return redirect('pet_health_tracker:pet_health', pet_id=pet_name.id)
 
     context = {'pet_name': pet_name, 'form': form}
     return render(request, 'pet_health_tracker/pet_tracker.html', context)

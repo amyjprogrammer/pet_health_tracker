@@ -112,7 +112,7 @@
                                           {% endfor %}
 
                                           {% for health in latest_health_tracker %}
-                                            {% if pet_species == 'Cat' and health.pet_glucose > 120 %}
+                                            {% if pet_name.pet_species == 'Cat' and health.pet_glucose > 120 %}
                                               Pet Glucose High {{ health.pet_glucose }} - {{ health.date_added|date:"M d,Y" }}
                                               <br>
                                             {% endif %}
