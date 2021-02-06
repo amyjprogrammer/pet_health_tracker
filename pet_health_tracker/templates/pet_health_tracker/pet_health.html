@@ -129,7 +129,7 @@
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-area mr-1"></i>
-                                        Weight
+                                        Weight in Pounds
                                     </div>
                                     <div id="myChart"></div>
                                     <div class="card-body">
@@ -192,7 +192,7 @@
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-bar mr-1"></i>
-                                        Temperature
+                                        Temperature in Fahrenheit
                                     </div>
                                     <div id="myTempChart"></div>
                                     <div class="card-body">
@@ -232,17 +232,30 @@
 
                                             var chart_Data = {
                                               "type": "line",
-
+                                              "plot": {
+                                                "line-color": "grey",
+                                                "line-width": 1,
+                                                "marker": {
+                                                  "background-color": "green",
+                                                  "border-color": "pink",
+                                                  "size": 7,
+                                                  "border-width": 3,
+                                                }
+                                              },
                                                 "scale-x":{
                                                   "values":info.x
                                                 },
+                                                "scale-y":{
+                                                  'values':"96:106:1",
+                                                },
                                                 "series":[
                                                   {
-                                                    "values":info.y
+                                                    "values":info.y,
                                                   }
                                                 ]
 
                                             }
+
                                             zingchart.render({
                                               id: 'myTempChart',
                                               data: chart_Data,
