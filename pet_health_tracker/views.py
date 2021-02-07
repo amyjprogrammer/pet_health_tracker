@@ -158,6 +158,9 @@ def delete_pet_tracker(request, health_id):
     """Delete health form"""
     health = HealthTracker.objects.get(id=health_id)
     pet_name = health.pet_name
-    health.delete()
-    context= {"pet_name": pet_name, "health": health}
-    return redirect('pet_health_tracker:pet_health.html', pet_id= pet_name.id)
+    check_pet_owner(request, pet_name.owner)
+
+    if request.method == "POST":
+        health.delete()
+        context= {"pet_name": pet_name, "health": health}
+        return redirect('pet_health_tracker:pet_health', pet_id= pet_name.id)

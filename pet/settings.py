@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     #my apps
     'pet_health_tracker',
     'users',
+    'crispy_forms',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -144,3 +145,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

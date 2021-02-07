@@ -1,10 +1,11 @@
 {% extends "pet_health_tracker/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
   <form action="{% url 'users:register' %}" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
 
     <button class="btn btn-primary" name="submit" type= "button">Register</button>
     <input type="hidden" name="next" value="{% url 'pet_health_tracker:home' %}">

@@ -1,4 +1,5 @@
 {% extends 'pet_health_tracker/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %}Add pet {% endblock title %}
 
@@ -10,9 +11,9 @@
 
   <form action="{% url 'pet_health_tracker:add_pet' %}" method="post">
     {% csrf_token %}
-    {{ form.as_p}}
+    {{ form|crispy }}
 
-      <button class="btn btn-outline-primary" name="submit">Add pet</button>
+      <button class="btn btn-primary" name="submit">Add pet</button>
 
 
   </form>

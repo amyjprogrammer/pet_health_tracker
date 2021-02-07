@@ -83,6 +83,12 @@
                                     <div class="card-body">Things to Watch</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <div class="small text-white">
+                                          {% for health in health_trackers %}
+                                            {% if health.tracking_type == "EM" %}
+                                            Emergency - {{ health.date_added|date:"M d, Y" }}
+                                            <br>
+                                            {% endif %}
+                                          {% endfor %}
                                           {% for health in latest_health_tracker %}
                                             {% if health.solid_stool == False %}
                                               Stool Issue - {{ health.date_added|date:"M d, Y" }}
@@ -280,16 +286,17 @@
                                         <thead>
                                             <tr>
                                               <th>Date added</th>
-                                              <th>Review/Edit Form</th>
-
-
+                                              <th>Notes</th>
+                                              <th>Edit Form</th>
+                                              <th>Delete</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
                                               <th>Date added</th>
-                                              <th>Review/Edit Form</th>
-
+                                              <th>Notes</th>
+                                              <th>Edit Form</th>
+                                              <th>Delete</th>
                                             </tr>
                                         </tfoot>
 
@@ -297,10 +304,18 @@
                                             {% for health in health_trackers %}
                                               <tr>
                                                   <td>{{health.date_added|date:"M d,Y"}}</td>
+                                                  <td>{{health.notes}}</td>
                                                   <td>
                                                     <a href="{% url 'pet_health_tracker:edit_pet_tracker' health.id %}">Edit</a>
                                                   </td>
-s
+                                                  <td>
+                                                    <form action="{% url 'pet_health_tracker:delete_pet_tracker' health.id %}" method="post">
+                                                      {% csrf_token %}
+                                                      <button type="submit" class="btn">
+                                                        <i class="far fa-trash-alt fa-lg text-danger"></i>
+                                                      </button>
+                                                    </form>
+                                                  </td>
                                               </tr>
                                             {% endfor %}
                                           </tbody>
