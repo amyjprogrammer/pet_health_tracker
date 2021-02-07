@@ -10,7 +10,7 @@
 <a href="{% url 'pet_health_tracker:pet_health' pet_name.id %}" class="btn btn-outline-success">{{ pet_name.pet_name }}'s Info</a>
 <br>
 <br>
-  <form action="{% url 'pet_health_tracker:edit_pet_tracker' tracker.id %}" method="post">
+  <form action="{% url 'pet_health_tracker:edit_pet_tracker' health.id %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
 

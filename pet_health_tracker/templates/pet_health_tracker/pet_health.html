@@ -298,9 +298,9 @@
                                               <tr>
                                                   <td>{{health.date_added|date:"M d,Y"}}</td>
                                                   <td>
-                                                    <a href="#">Edit</a>
+                                                    <a href="{% url 'pet_health_tracker:edit_pet_tracker' health.id %}">Edit</a>
                                                   </td>
-
+s
                                               </tr>
                                             {% endfor %}
                                           </tbody>
