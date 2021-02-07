@@ -99,3 +99,65 @@ def chart_temp_data(request,pet):
         temp_info.append({date:info.pet_temp})
 
     return JsonResponse(temp_info, safe=False)
+
+@login_required
+def edit_pet_tracker(request, health_id):
+    """Allowing owner to edit the health form"""
+    health = HealthTracker.objects.get(id=health_id)
+    pet_name = health.pet_name
+    check_pet_owner(request, pet_name.owner)
+
+    if request.method != 'POST':
+        #shows form with the current data
+        form = HealthTrackerForm(instance=health)
+
+    else:
+        #owner made changes, updating info
+        form = HealthTrackerForm(instance=health, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('pet_health_tracker:pet_health', pet_id = pet_name.id)
+
+    context = {'health': health, 'pet_name': pet_name, 'form':form}
+    return render(request, "pet_health_tracker/edit_pet_tracker.html", context)
+
+@login_required
+def edit_pet_name(request, pet_id):
+    """Option to edit pet info"""
+    pet_name = get_object_or_404(PetInfo, id=pet_id)
+    check_pet_owner(request, pet_name.owner)
+
+    if request.method != "POST":
+        #show previous pet info
+        form = PetInfoForm(instance=pet_name)
+    else:
+        #owner can update info
+        form = PetInfoForm(instance=pet_name, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('pet_health_tracker:pet_health', pet_id = pet_name.id)
+
+    context = {'pet_name': pet_name, "form": form}
+    return render(request, 'pet_health_tracker/edit_pet_name.html', context)
+
+@login_required
+def delete_pet_name(request, pet_id):
+    """Option to delete pet entry"""
+    pet_name = get_object_or_404(PetInfo, id=pet_id)
+    check_pet_owner(request, pet_name.owner)
+
+    if request.method == "POST":
+        pet_name.delete()
+        return redirect('pet_health_tracker:pet_names')
+
+    context = {'pet_name': pet_name}
+    return render(request, 'pet_health_tracker/delete_pet_name.html', context)
+
+@login_required
+def delete_pet_tracker(request, health_id):
+    """Delete health form"""
+    health = HealthTracker.objects.get(id=health_id)
+    pet_name = health.pet_name
+    health.delete()
+    context= {"pet_name": pet_name, "health": health}
+    return redirect('pet_health_tracker:pet_health.html', pet_id= pet_name.id)

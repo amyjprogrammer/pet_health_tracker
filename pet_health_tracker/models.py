@@ -18,7 +18,7 @@ class PetInfo(models.Model):
     pet_sex = models.CharField(max_length=6, choices=pet_gender, default= 'Male')
     pet_breed = models.CharField(max_length=200)
     pet_color = models.CharField(max_length=200, blank=True)
-    starting_weight = models.IntegerField()
+    starting_weight = models.FloatField()
     pet_birthday = models.DateField()
     pet_allergies = models.CharField(max_length=300, default="none")
     pet_primary_vet = models.CharField(max_length=200)
@@ -45,7 +45,7 @@ class HealthTracker(models.Model):
         choices=tracking_choice,
         default=Daily_Tracking
     )
-    pet_weight = models.IntegerField(blank=True, null=True)
+    pet_weight = models.FloatField(blank=True, null=True)
     pet_temp = models.FloatField(blank=True, null=True)
     solid_stool = models.BooleanField(default=True)
     healthy_appetite = models.BooleanField(default=True)

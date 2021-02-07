@@ -14,4 +14,8 @@ urlpatterns = [
     path('add_pet/', views.add_pet, name='add_pet'),
     path('chart_weight_data/<str:pet>/', views.chart_weight_data, name='chart_weight_data'),
     path('chart_temp_data/<str:pet>/', views.chart_temp_data, name='chart_temp_data'),
+    path('edit_pet_tracker/<int:health_id>/', views.edit_pet_tracker, name='edit_pet_tracker'),
+    path('edit_pet_name/<int:pet_id>/', views.edit_pet_name, name='edit_pet_name'),
+    path('delete_pet_name/<int:pet_id>/', views.delete_pet_name, name='delete_pet_name'),
+    path('delete_pet_tracker/<int:health_id>/', views.delete_pet_tracker, name='delete_pet_tracker'),
     ]

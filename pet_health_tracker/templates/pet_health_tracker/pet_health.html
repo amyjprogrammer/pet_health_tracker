@@ -281,7 +281,7 @@
                                             <tr>
                                               <th>Date added</th>
                                               <th>Review/Edit Form</th>
-                                              <th>Delete Form</th>
+
 
                                             </tr>
                                         </thead>
@@ -289,20 +289,22 @@
                                             <tr>
                                               <th>Date added</th>
                                               <th>Review/Edit Form</th>
-                                              <th>Delete Form</th>
+
                                             </tr>
                                         </tfoot>
-                                        {% for health in health_trackers %}
+
                                           <tbody>
+                                            {% for health in health_trackers %}
                                               <tr>
                                                   <td>{{health.date_added|date:"M d,Y"}}</td>
-                                                  <td><a href="#">Edit</a></td>
-                                                  <td><a href="#">Delete</a></td>
+                                                  <td>
+                                                    <a href="#">Edit</a>
+                                                  </td>
 
                                               </tr>
-
+                                            {% endfor %}
                                           </tbody>
-                                        {% endfor %}
+
                                     </table>
                                 </div>
                             </div>

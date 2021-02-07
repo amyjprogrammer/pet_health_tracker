@@ -7,14 +7,28 @@
 {% block content %}
 
   {% for pet in pet_names %}
-    <h6 class="display-6">
-      <a href="{% url 'pet_health_tracker:pet_health' pet.id %}">{{ pet }}</a>
-    </h6>
-    <a class="btn btn-primary"  href="{% url 'pet_health_tracker:pet_tracker' pet.id %}">Add form</a>
+    <div class="container mb-4 ">
+      <div class="row">
+        <div class="card header ">
+          <h6 class="display-6">
+            <a href="{% url 'pet_health_tracker:pet_health' pet.id %}">{{ pet }}</a>
+            <a class="btn btn-success btn-sm"  href="{% url 'pet_health_tracker:edit_pet_name' pet.id %}">Edit</a>
+            <a class="btn btn-primary"  href="{% url 'pet_health_tracker:pet_tracker' pet.id %}">Add health form</a>
+            <div class="card body">
+
+            </div>
+          </h6>
+        </div>
+      </div>
+    </div>
+
+
   {% empty %}
     <h2>No pets have been added to your account yet.</h2>
   {% endfor %}
 
+<br>
+<br>
 
   <div class="d-grid gap-2 col-6 mx-auto">
     <a class="btn btn-secondary" href="{% url 'pet_health_tracker:add_pet' %}" >Add a new pet</a>
