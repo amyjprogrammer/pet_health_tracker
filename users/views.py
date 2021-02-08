@@ -15,7 +15,7 @@ def register(request):
 
             #now log the user in and direct to the home page
             login(request, new_user)
-            return redirect('pet_health_tracker:home')
+            return redirect('pet_health_tracker:pet_names')
 
     context = {'form': form}
     return render(request, 'registration/register.html', context)
