@@ -1,7 +1,24 @@
 {% extends 'pet_health_tracker/base.html' %}
+{% load static %}
+
+
 
 {% block content %}
 
-<h1>Coming Soon!</h1>
+<div class="jumbotron">
+  <div class="card">
+    <div class="card-header">
+      <h1 class="display-1">Track your pet's health.</h1>
+    </div>
+    <div class="card-body">
+      <p class="lead">Track your pet's weight, temperature, appetite and more daily with easy forms.  See your pet's information displayed with charts and get specials notes.
+        </p>
+      <a class="btn btn-lg btn-primary" href="{% url "users:register" %}"
+        role="button">Register &raquo;</a>
+      </div>
+    </div>
+</div>
+
+
 
 {% endblock content %}
