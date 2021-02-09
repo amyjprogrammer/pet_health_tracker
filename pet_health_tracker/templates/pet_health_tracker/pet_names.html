@@ -2,38 +2,46 @@
 
 
 {% block title %}
-  Pet
+  Pet List
 {% endblock title %}
 
 {% block content %}
+<div class="card border-success">
+  <div class="card-header pt-4 ps-4">
+    <h3 >{{ request.user }}'s Pet List</h3>
+  </div>
 
-  {% for pet in pet_names %}
-    <div class="container mb-4 ">
-      <div class="row">
-        <div class="card header ">
-          <h6 class="display-6">
-            <a href="{% url 'pet_health_tracker:pet_health' pet.id %}">{{ pet }}</a>
-            <a class="btn btn-success btn-sm"  href="{% url 'pet_health_tracker:edit_pet_name' pet.id %}">Edit</a>
-            <a class="btn btn-primary"  href="{% url 'pet_health_tracker:pet_tracker' pet.id %}">Add health form</a>
-            <div class="card body">
+    <div class="card-body mb-2 pt-4">
+      {% for pet in pet_names %}
+      <div class="container">
+        <div class="row row-cols-3">
 
-            </div>
-          </h6>
+        <div id="div_pet_name" class="col-6">
+          <a href="{% url 'pet_health_tracker:pet_health' pet.id %}">{{ pet }}</a>
         </div>
+        <div id= "div_edit_form"class="col-2 text-end">
+          <a class="btn btn-success btn-sm"  href="{% url 'pet_health_tracker:edit_pet_name' pet.id %}">Edit</a>
+        </div>
+        <div id= "div_edit_form" class="col-4 text-end">
+          <a class="btn btn-primary btn-sm"  href="{% url 'pet_health_tracker:pet_tracker' pet.id %}">Add health form</a>
+        </div>
+
+      </div>
+    </div>
+
+          {% empty %}
+            <h2>No pets have been added to your account yet.</h2>
+          {% endfor %}
+
+          <div id="add_new_pet" class="d-grid gap-2 col-6 mx-auto">
+            <a class="btn btn-secondary" href="{% url 'pet_health_tracker:add_pet' %}" >Add a new pet</a>
+          </div>
       </div>
     </div>
 
 
-  {% empty %}
-    <h2>No pets have been added to your account yet.</h2>
-  {% endfor %}
 
-<br>
-<br>
 
-  <div class="d-grid gap-2 col-6 mx-auto">
-    <a class="btn btn-secondary" href="{% url 'pet_health_tracker:add_pet' %}" >Add a new pet</a>
-  </div>
 
 
 {% endblock content %}

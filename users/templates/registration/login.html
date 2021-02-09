@@ -1,20 +1,22 @@
 {% extends 'pet_health_tracker/base.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
 
+
 {% block content %}
+<div class="card border-success">
+  <div class="card-body mb-2 pt-4">
+    <legend class="border-bottom mb-4">Log into your account</legend>
+    <form action="{% url 'users:login' %}" method="post">
+      {% csrf_token %}
+      {{ form|crispy }}
 
-  {% if form.errors %}
-    <p>Your username and password didn't match.  Please try again.</p>
-  {% endif %}
+      <button class= "btn btn-primary" name="submit">Log in</button>
+      <input type="hidden" name="next" value="{% url 'pet_health_tracker:pet_names' %}" />
 
-  <form action="{% url 'users:login' %}" method="post">
-    {% csrf_token %}
-    {{ form|crispy }}
-
-    <button class= "btn btn-primary" name="submit">Log in</button>
-    <input type="hidden" name="next" value="{% url 'pet_health_tracker:pet_names' %}" />
-
-  </form>
+    </form>
+  </div>
+</div>
 
 
 {% endblock content %}

@@ -35,3 +35,19 @@ form .alert ul {
 #div_id_password2 {
   padding-bottom: 1.5rem;
 }
+
+#div_id_password {
+  padding-bottom: 1.5rem;
+}
+
+#add_new_pet {
+  padding-top: 2.5rem;
+}
+
+#div_pet_name {
+  padding-bottom: 1.5rem;
+}
+
+#div_edit_form {
+  padding-bottom: 1.5rem;
+}
