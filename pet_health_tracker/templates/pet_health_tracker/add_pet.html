@@ -4,20 +4,24 @@
 {% block title %}Add pet {% endblock title %}
 
 {% block content %}
+<div class="card border-success">
+  <div class="card-header pt-4">
 
-<div class="d-grid gap-2 col-6 mx-auto">
-  <a class="btn btn-secondary" href="{% url 'pet_health_tracker:pet_names' %}" >Home</a>
+      <a class="btn btn-primary" href="{% url 'pet_health_tracker:pet_names' %}" >Home</a>
+    
+  </div>
+
+  <div class="card-body mb-2 pt-4">
+    <form action="{% url 'pet_health_tracker:add_pet' %}" method="post">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <br>
+        <button class="btn btn-secondary" name="submit">Add pet</button>
+
+
+    </form>
+  </div>
 </div>
-
-  <form action="{% url 'pet_health_tracker:add_pet' %}" method="post">
-    {% csrf_token %}
-    {{ form|crispy }}
-
-      <button class="btn btn-primary" name="submit">Add pet</button>
-
-
-  </form>
-
 
 
 {% endblock content %}

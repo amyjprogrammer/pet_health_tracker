@@ -17,329 +17,400 @@
 
     </head>
 
-    <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="index.html">Start Bootstrap</a>
-            <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
-            <!-- Navbar Search-->
-            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+    <body>
+      {% include 'pet_health_tracker/nav_bar.html' %}
+      <main>
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-4 col-md-6">
+                    <div class="card bg-primary text-white mb-4">
+                        <div class="card-body">{{ pet_name.pet_name}}</div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="small text-white">Birthday: {{ pet_name.pet_birthday}}</div>
+
+                        </div>
                     </div>
                 </div>
-            </form>
-            <!-- Navbar-->
-            <ul class="navbar-nav ml-auto ml-md-0">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">Settings</a>
-                        <a class="dropdown-item" href="#">Activity Log</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="login.html">Logout</a>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-                  <main>
-                    <div class="container-fluid">
 
-                        <div class="row">
-                            <div class="col-xl-4 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">{{ pet_name.pet_name}}</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <div class="small text-white">Birthday: {{ pet_name.pet_birthday}}</div>
-
-                                    </div>
-                                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="card bg-success text-white mb-4">
+                        <div class="card-body">Reminder from Last Time</div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="small text-white">
+                              {% if health_trackers %}
+                                {% for health in latest_health_tracker%}
+                                  {% if health.special_notes_for_next_time != blank %}
+                                    {{health.special_notes_for_next_time}}
+                                  {% else %}
+                                    No special notes added last time.
+                                  {% endif %}
+                                {% endfor %}
+                              {% else %}
+                                <p>No form data entered yet.</p>
+                              {% endif %}
                             </div>
 
-                            <div class="col-xl-4 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Special Notes</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <div class="small text-white">
-                                          {% if health_trackers %}
-                                            {% for health in latest_health_tracker%}
-                                              {% if health.special_notes_for_next_time != blank %}
-                                                {{health.special_notes_for_next_time}}
-                                              {% else %}
-                                                No special notes added last time.
-                                              {% endif %}
-                                            {% endfor %}
-                                          {% else %}
-                                            <p>No form data entered yet.</p>
-                                          {% endif %}
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Things to Watch</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <div class="small text-white">
-                                          {% for health in health_trackers %}
-                                            {% if health.tracking_type == "EM" %}
-                                            Emergency - {{ health.date_added|date:"M d, Y" }}
-                                            <br>
-                                            {% endif %}
-                                          {% endfor %}
-                                          {% for health in latest_health_tracker %}
-                                            {% if health.solid_stool == False %}
-                                              Stool Issue - {{ health.date_added|date:"M d, Y" }}
-                                              <br>
-                                            {% endif %}
-                                          {% endfor %}
-
-                                          {% for health in latest_health_tracker %}
-                                            {% if health.healthy_appetite == False %}
-                                              Loss of Appetite - {{ health.date_added|date:"M d, Y" }}
-                                              <br>
-                                            {% endif %}
-                                          {% endfor %}
-
-                                          {% for health in latest_health_tracker %}
-                                            {% if health.healthy_coat == False %}
-                                              Unhealthy coat - {{ health.date_added|date:"M d,Y" }}
-                                              <br>
-                                            {% endif %}
-                                          {% endfor %}
-
-                                          {% for health in latest_health_tracker %}
-                                            {% if pet_name.pet_species == 'Dog' and health.pet_glucose > 250 %}
-                                              Pet Glucose High {{ health.pet_glucose }} - {{ health.date_added|date:"M d,Y" }}
-                                               <br>
-                                            {% endif %}
-                                          {% endfor %}
-
-                                          {% for health in latest_health_tracker %}
-                                            {% if pet_name.pet_species == 'Cat' and health.pet_glucose > 120 %}
-                                              Pet Glucose High {{ health.pet_glucose }} - {{ health.date_added|date:"M d,Y" }}
-                                              <br>
-                                            {% endif %}
-                                          {% endfor %}
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area mr-1"></i>
-                                        Weight in Pounds
-                                    </div>
-                                    <div id="myChart"></div>
-                                    <div class="card-body">
-                                      <script>
-
-                                        var state ={
-                                          "items":[],
-                                          "values":[],
-                                        }
-
-
-
-                                        var dataURL = '/chart_weight_data/{{pet_name.id}}'
-                                        var dataDjango = "{{weight_info}}"
-
-
-                                        $.ajax({
-                                            method: "GET",
-                                            url:dataURL,
-                                            success: function (response){
-                                              console.log('RESPONSE:', response)
-                                              for (var i in response){
-
-                                                var key = Object.keys(response[i])[0]
-                                                var value = Object.values(response[i])[0]
-
-                                                state.items.push(key)
-                                                state.values.push(value)
-                                              }
-                                              console.log("STATE:", state)
-                                              buildChart()
-
-                                            },
-                                          })
-
-                                          function buildChart(){
-
-                                            var chartData = {
-                                              "type": "bar",
-                                              "scale-x":{
-                                                "values":state.items
-                                              },
-                                              "series":[
-                                                {
-                                                  "values":state.values
-                                                }
-                                              ]
-                                            }
-                                            zingchart.render({
-                                              id: 'myChart',
-                                              data: chartData,
-                                            });
-                                          }
-
-                                        </script>
-                                      <canvas id="myChart" width="100%" height="35"></canvas></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar mr-1"></i>
-                                        Temperature in Fahrenheit
-                                    </div>
-                                    <div id="myTempChart"></div>
-                                    <div class="card-body">
-                                      <script>
-
-                                        var info ={
-                                          "x":[],
-                                          "y":[],
-                                        }
-
-
-
-                                        var dataURL = '/chart_temp_data/{{pet_name.id}}'
-                                        var dataDjango = "{{temp_info}}"
-
-
-                                        $.ajax({
-                                            method: "GET",
-                                            url:dataURL,
-                                            success: function (response){
-                                              console.log('RESPONSE:', response)
-                                              for (var i in response){
-
-                                                var key = Object.keys(response[i])[0]
-                                                var value = Object.values(response[i])[0]
-
-                                                info.x.push(key)
-                                                info.y.push(value)
-                                              }
-                                              console.log("INFO:", info)
-                                              build_Chart()
-
-                                            },
-                                          })
-
-                                          function build_Chart(){
-
-                                            var chart_Data = {
-                                              "type": "line",
-                                              "plot": {
-                                                "line-color": "grey",
-                                                "line-width": 1,
-                                                "marker": {
-                                                  "background-color": "green",
-                                                  "border-color": "pink",
-                                                  "size": 7,
-                                                  "border-width": 3,
-                                                }
-                                              },
-                                                "scale-x":{
-                                                  "values":info.x
-                                                },
-                                                "scale-y":{
-                                                  'values':"96:106:1",
-                                                },
-                                                "series":[
-                                                  {
-                                                    "values":info.y,
-                                                  }
-                                                ]
-
-                                            }
-
-                                            zingchart.render({
-                                              id: 'myTempChart',
-                                              data: chart_Data,
-                                            });
-                                          }
-
-                                        </script>
-
-                                      <canvas id="myTempChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table mr-1"></i>
-                                Archimedes' Past Forms
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
-                                        <thead>
-                                            <tr>
-                                              <th>Date added</th>
-                                              <th>Notes</th>
-                                              <th>Edit Form</th>
-                                              <th>Delete</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                              <th>Date added</th>
-                                              <th>Notes</th>
-                                              <th>Edit Form</th>
-                                              <th>Delete</th>
-                                            </tr>
-                                        </tfoot>
-
-                                          <tbody>
-                                            {% for health in health_trackers %}
-                                              <tr>
-                                                  <td>{{health.date_added|date:"M d,Y"}}</td>
-                                                  <td>{{health.notes}}</td>
-                                                  <td>
-                                                    <a href="{% url 'pet_health_tracker:edit_pet_tracker' health.id %}">Edit</a>
-                                                  </td>
-                                                  <td>
-                                                    <form action="{% url 'pet_health_tracker:delete_pet_tracker' health.id %}" method="post">
-                                                      {% csrf_token %}
-                                                      <button type="submit" class="btn">
-                                                        <i class="far fa-trash-alt fa-lg text-danger"></i>
-                                                      </button>
-                                                    </form>
-                                                  </td>
-                                              </tr>
-                                            {% endfor %}
-                                          </tbody>
-
-                                    </table>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2020</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="card bg-danger text-white mb-4">
+                        <div class="card-body">Things to Watch</div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="small text-white">
+                              {% for health in latest_health_tracker %}
+                                {% if health.tracking_type == "EM" %}
+                                Emergency - {{ health.date_added|date:"M d, Y" }}
+                                <br>
+                                {% endif %}
+                              {% endfor %}
+                              {% for health in latest_health_tracker %}
+                                {% if health.solid_stool == False %}
+                                  Stool Issue - {{ health.date_added|date:"M d, Y" }}
+                                  <br>
+                                {% endif %}
+                              {% endfor %}
+
+                              {% for health in latest_health_tracker %}
+                                {% if health.healthy_appetite == False %}
+                                  Loss of Appetite - {{ health.date_added|date:"M d, Y" }}
+                                  <br>
+                                {% endif %}
+                              {% endfor %}
+
+                              {% for health in latest_health_tracker %}
+                                {% if health.healthy_coat == False %}
+                                  Unhealthy coat - {{ health.date_added|date:"M d,Y" }}
+                                  <br>
+                                {% endif %}
+                              {% endfor %}
+
+                              {% for health in latest_health_tracker %}
+                                {% if pet_name.pet_species == 'Dog' and health.pet_glucose > 250 %}
+                                  Pet Glucose High {{ health.pet_glucose }} - {{ health.date_added|date:"M d,Y" }}
+                                   <br>
+                                {% endif %}
+                              {% endfor %}
+
+                              {% for health in latest_health_tracker %}
+                                {% if pet_name.pet_species == 'Cat' and health.pet_glucose > 120 %}
+                                  Pet Glucose High {{ health.pet_glucose }} - {{ health.date_added|date:"M d,Y" }}
+                                  <br>
+                                {% endif %}
+                              {% endfor %}
+
                             </div>
+
                         </div>
                     </div>
-                </footer>
+                </div>
             </div>
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-chart-area mr-1"></i>
+                            Weight in Pounds
+                        </div>
+                        <div id="myChart"></div>
+                        <div class="card-body">
+                          <script>
+
+                            var state ={
+                              "items":[],
+                              "values":[],
+                            }
+
+
+
+                            var dataURL = '/chart_weight_data/{{pet_name.id}}'
+                            var dataDjango = "{{weight_info}}"
+
+
+                            $.ajax({
+                                method: "GET",
+                                url:dataURL,
+                                success: function (response){
+                                  console.log('RESPONSE:', response)
+                                  for (var i in response){
+
+                                    var key = Object.keys(response[i])[0]
+                                    var value = Object.values(response[i])[0]
+
+                                    state.items.push(key)
+                                    state.values.push(value)
+                                  }
+                                  console.log("STATE:", state)
+                                  buildChart()
+
+                                },
+                              })
+
+                              function buildChart(){
+
+                                var chartData = {
+                                  "type": "bar",
+                                  "scale-x":{
+                                    "values":state.items
+                                  },
+                                  "series":[
+                                    {
+                                      "values":state.values
+                                    }
+                                  ]
+                                }
+                                zingchart.render({
+                                  id: 'myChart',
+                                  data: chartData,
+                                });
+                              }
+
+                            </script>
+                          <canvas id="myChart" width="100%" height="35"></canvas></div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-chart-bar mr-1"></i>
+                            Temperature in Fahrenheit
+                        </div>
+                        <div id="myTempChart"></div>
+                        <div class="card-body">
+                          <script>
+
+                            var info ={
+                              "x":[],
+                              "y":[],
+                            }
+
+
+
+                            var dataURL = '/chart_temp_data/{{pet_name.id}}'
+                            var dataDjango = "{{temp_info}}"
+
+
+                            $.ajax({
+                                method: "GET",
+                                url:dataURL,
+                                success: function (response){
+                                  console.log('RESPONSE:', response)
+                                  for (var i in response){
+
+                                    var key = Object.keys(response[i])[0]
+                                    var value = Object.values(response[i])[0]
+
+                                    info.x.push(key)
+                                    info.y.push(value)
+                                  }
+                                  console.log("INFO:", info)
+                                  build_Chart()
+
+                                },
+                              })
+
+                              function build_Chart(){
+
+                                var chart_Data = {
+                                  "type": "line",
+                                  "plot": {
+                                    "line-color": "grey",
+                                    "line-width": 1,
+                                    "marker": {
+                                      "background-color": "green",
+                                      "border-color": "pink",
+                                      "size": 7,
+                                      "border-width": 3,
+                                    }
+                                  },
+                                    "scale-x":{
+                                      "values":info.x
+                                    },
+                                    "scale-y":{
+                                      'values':"96:106:1",
+                                    },
+                                    "series":[
+                                      {
+                                        "values":info.y,
+                                      }
+                                    ]
+
+                                }
+
+                                zingchart.render({
+                                  id: 'myTempChart',
+                                  data: chart_Data,
+                                });
+                              }
+
+                            </script>
+
+                          <canvas id="myTempChart" width="100%" height="40"></canvas></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table mr-1"></i>
+                    {{pet_name.pet_name}} Past Forms
+                    <a class="btn btn-primary btn-sm"  href="{% url 'pet_health_tracker:pet_tracker' pet_name.id %}">Add health form</a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                            <thead>
+                                <tr>
+                                  <th>Date added</th>
+                                  <th>Notes</th>
+                                  <th>Edit Form</th>
+                                  <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                  <th>Date added</th>
+                                  <th>Notes</th>
+                                  <th>Edit Form</th>
+                                  <th>Delete</th>
+                                </tr>
+                            </tfoot>
+
+                              <tbody>
+                                {% for health in health_trackers %}
+                                  <tr>
+                                      <td>{{health.date_added|date:"M d,Y"}}</td>
+                                      <td>{{health.notes}}</td>
+                                      <td>
+                                        <a href="{% url 'pet_health_tracker:edit_pet_tracker' health.id %}">Edit</a>
+                                      </td>
+                                      <td>
+                                        <form action="{% url 'pet_health_tracker:delete_pet_tracker' health.id %}" method="post">
+                                          {% csrf_token %}
+                                          <button type="submit" class="btn">
+                                            <i class="far fa-trash-alt fa-lg text-danger"></i>
+                                          </button>
+                                        </form>
+                                      </td>
+                                  </tr>
+                                {% endfor %}
+                              </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 col-md-6">
+                    <div class="card bg-primary text-white mb-4">
+                        <div class="card-body">Alternative Treatments</div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="small text-white">
+                              {% for health in health_trackers %}
+                                {% if health.acupuncture %}
+                                Acupuncture - {{ health.date_added|date:"M d,Y" }}
+                                <br>
+                                {% endif %}
+                              {% endfor %}
+                              {% for health in health_trackers %}
+                                {% if health.laser_therapy %}
+                                Laser Therapy - {{ health.date_added|date:"M d,Y" }}
+                                <br>
+                                {% endif %}
+                              {% endfor %}
+                              {% for health in health_trackers %}
+                                {% if health.adjustment %}
+                                Adjustment - {{ health.date_added|date:"M d,Y" }}
+                                <br>
+                                {% endif %}
+                              {% endfor %}
+                              {% for health in health_trackers %}
+                                {% if health.range_of_motion_exercises %}
+                                Motion Exercises - {{ health.date_added|date:"M d,Y" }}
+                                <br>
+                                {% endif %}
+                              {% endfor %}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-md-6">
+                    <div class="card bg-secondary text-white mb-4">
+                        <div class="card-body">Issues from previous forms</div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="small text-white">
+                              {% for health in health_trackers %}
+                                {% if health.solid_stool == False %}
+                                Stool Issue - {{ health.date_added|date:"M d,Y" }}
+                                <br>
+                                {% endif %}
+                              {% endfor %}
+                              {% for health in health_trackers %}
+                                {% if health.healthy_appetite == False %}
+                                  Loss of Appetite - {{ health.date_added|date:"M d, Y" }}
+                                  <br>
+                                {% endif %}
+                              {% endfor %}
+
+                              {% for health in health_trackers %}
+                                {% if health.healthy_coat == False %}
+                                  Unhealthy coat - {{ health.date_added|date:"M d,Y" }}
+                                  <br>
+                                {% endif %}
+                              {% endfor %}
+
+                              {% for health in health_trackers %}
+                                {% if pet_name.pet_species == 'Dog' and health.pet_glucose > 250 %}
+                                  Pet Glucose High {{ health.pet_glucose }} - {{ health.date_added|date:"M d,Y" }}
+                                   <br>
+                                {% endif %}
+                              {% endfor %}
+
+                              {% for health in health_trackers %}
+                                {% if pet_name.pet_species == 'Cat' and health.pet_glucose > 120 %}
+                                  Pet Glucose High {{ health.pet_glucose }} - {{ health.date_added|date:"M d,Y" }}
+                                  <br>
+                                {% endif %}
+                              {% endfor %}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="card bg-danger text-white mb-4">
+                        <div class="card-body">Emergency Visits or Surgeries</div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="small text-white">
+                              {% for health in health_trackers %}
+                                {% if health.tracking_type == "EM" %}
+                                Emergency - {{ health.date_added|date:"M d, Y" }}
+                                <br>
+                                {% endif %}
+                              {% endfor %}
+                              {% for health in health_trackers %}
+                                {% if health.surgery == True %}
+                                  Surgery - {{ health.date_added|date:"M d, Y" }}
+                                  <br>
+                                {% endif %}
+                              {% endfor %}
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
+    </main>
+
+
+
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{% static 'js/scripts.js'  %}"></script>

@@ -20,7 +20,7 @@
           <a href="{% url 'pet_health_tracker:pet_health' pet.id %}">{{ pet }}</a>
         </div>
         <div id= "div_edit_form"class="col-2 text-end">
-          <a class="btn btn-success btn-sm"  href="{% url 'pet_health_tracker:edit_pet_name' pet.id %}">Edit</a>
+          <a class="btn btn-success btn-sm"  href="{% url 'pet_health_tracker:edit_pet_name' pet.id %}">Edit Pet Info</a>
         </div>
         <div id= "div_edit_form" class="col-4 text-end">
           <a class="btn btn-primary btn-sm"  href="{% url 'pet_health_tracker:pet_tracker' pet.id %}">Add health form</a>

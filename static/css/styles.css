@@ -68,6 +68,7 @@ body {
   text-align: left;
   background-color: #fff;
 
+
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -600,7 +601,7 @@ pre code {
   width: 100%;
   padding-right: 0.75rem;
   padding-left: 0.75rem;
-  padding-top: 5rem;
+  padding-top: 1rem;
 }
 
 .col {
@@ -9960,6 +9961,7 @@ h3 {
   }
   body {
     min-width: 992px !important;
+
   }
 
   .container {

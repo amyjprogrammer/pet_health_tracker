@@ -6,19 +6,23 @@
 
 
 {% block content %}
+<div class="card border-success">
+  <div class="card-header pt-4">
+    <a href="{% url 'pet_health_tracker:pet_names' %}" class="btn btn-primary">Home</a>
+  </div>
 
-<a href="{% url 'pet_health_tracker:pet_names' %}" class="btn btn-outline-primary">Home</a>
+  <div class="card-body mb-2 pt-4">
+    <h3>Are you sure you want to delete your pet information for {{pet_name}}?</h3>
 
-<h3>Are you sure you want to delete your pet information for {{pet_name}}?</h3>
+    <form action="{% url 'pet_health_tracker:delete_pet_name' pet_name.id %}" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <br>
+          <button class="btn btn-danger" name="submit">Delete</button>
 
-  <form action="{% url 'pet_health_tracker:delete_pet_name' pet_name.id %}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
+    </form>
 
-        <button class="btn btn-danger" name="submit">Delete</button>
-
-  </form>
-
-
+  </div>
+</div>
 
 {% endblock content %}

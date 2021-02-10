@@ -24,22 +24,22 @@ class HealthTrackerForm(forms.ModelForm):
     class Meta:
         model = HealthTracker
         fields= [
-            'tracking_type', 'pet_weight', 'pet_temp', 'solid_stool', 'healthy_appetite', 'healthy_coat', 'range_of_motion_exercises', 'ongoing_meds', 'pet_glucose', 'acupuncture', 'laser_therapy', 'adjustment', 'surgery', 'special_notes_for_next_time', 'notes',
+            'tracking_type', 'pet_weight', 'pet_temp', 'pet_glucose', 'solid_stool', 'healthy_appetite', 'healthy_coat', 'range_of_motion_exercises', 'ongoing_meds',  'acupuncture', 'laser_therapy', 'adjustment', 'surgery', 'special_notes_for_next_time', 'notes',
         ]
         labels = {
             'tracking_type': "Tracking Choice",
             'pet_weight': 'Weight',
             'pet_temp': 'Temp',
+            'pet_glucose': 'Glucose Number',
             'solid_stool': 'Solid Stool',
             'healthy_appetite': 'Healthy Appetite',
             'healthy_coat': 'Healthy Coat',
             'range_of_motion_exercises': 'Range of motion exercises',
             'ongoing_meds': 'Ongoing Medication',
-            'pet_glucose': 'Glucose Number',
             'acupuncture': 'Acupuncture',
             'laser_therapy': 'Laser Therapy',
             'adjustment': 'Adjustment',
             'surgery': 'Surgery',
-            'special_notes_for_next_time': 'Special notes for next time',
+            'special_notes_for_next_time': 'Quick Reminder for Next Time',
             'notes': 'Notes'
         }

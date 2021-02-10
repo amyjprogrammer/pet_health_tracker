@@ -7,15 +7,20 @@
 
 
 {% block content %}
+<div class="card border-success">
+  <div class="card-header pt-4">
+    <a href="{% url 'pet_health_tracker:pet_names' %}" class="btn btn-primary">Home</a>
+  </div>
 
-  <form action="{% url 'pet_health_tracker:pet_tracker' pet_name.id %}" method="post">
-    {% csrf_token %}
-    {{ form|crispy }}
+  <div class="card-body mb-2 pt-4">
+    <form action="{% url 'pet_health_tracker:pet_tracker' pet_name.id %}" method="post">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <br>
+          <button class="btn btn-secondary" name="submit">Add form</button>
 
-        <button class="btn btn-outline-secondary" name="submit">Add form</button>
-
-  </form>
-
-  <a href="{% url 'pet_health_tracker:pet_names' %}" class="btn btn-outline-primary">Home</a>
+    </form>
+  </div>
+</div>
 
 {% endblock content %}

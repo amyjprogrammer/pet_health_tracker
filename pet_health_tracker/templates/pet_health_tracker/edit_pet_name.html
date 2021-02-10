@@ -7,19 +7,19 @@
 
 {% block content %}
 <div class="card border-success">
-  <div class="card-header mb-2 pt-4">
-    <a href="{% url 'pet_health_tracker:pet_names' %}" class="btn btn-outline-primary">Home</a>
-    <a href="{% url 'pet_health_tracker:pet_health' pet_name.id %}" class="btn btn-outline-success">{{ pet_name.pet_name }}'s Info</a>
+  <div class="card-header pt-4">
+    <a href="{% url 'pet_health_tracker:pet_names' %}" class="btn btn-primary">Home</a>
+    <a href="{% url 'pet_health_tracker:pet_health' pet_name.id %}" class="btn btn-success">{{ pet_name.pet_name }}'s Info</a>
+  </div>
 
   <div class="card-body mb-2 pt-4">
     <form action="{% url 'pet_health_tracker:edit_pet_name' pet_name.id %}" method="post">
       {% csrf_token %}
       {{ form|crispy }}
-
-          <button class="btn btn-outline-secondary" name="submit">Save changes</button>
-          <a href="{% url 'pet_health_tracker:delete_pet_name' pet_name.id %}" class="btn btn-outline-danger">Delete Info</a>
+      <br>
+          <button class="btn btn-secondary" name="submit">Save changes</button>
+          <a href="{% url 'pet_health_tracker:delete_pet_name' pet_name.id %}" class="btn btn-danger">Delete Info</a>
     </form>
-
 
   </div>
 </div>

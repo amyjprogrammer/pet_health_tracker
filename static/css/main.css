@@ -4,6 +4,18 @@ body {
   background-size: cover;
 }
 
+.page-container {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: block;
+
+}
+
+.content-wrap {
+  padding-bottom: 4rem;
+}
+
 #footer {
   position: absolute;
   bottom: 0;
@@ -50,4 +62,68 @@ form .alert ul {
 
 #div_edit_form {
   padding-bottom: 1.5rem;
+}
+
+#div_id_pet_name {
+  padding-bottom: 1rem;
+}
+
+#div_id_pet_species {
+  padding-bottom: 1rem;
+}
+
+#div_id_pet_sex {
+  padding-bottom: 1rem;
+}
+
+#div_id_pet_breed {
+  padding-bottom: 1rem;
+}
+
+#div_id_pet_color {
+  padding-bottom: 1rem;
+}
+
+#div_id_starting_weight {
+  padding-bottom: 1rem;
+}
+
+#div_id_pet_birthday {
+  padding-bottom: 1rem;
+}
+
+#div_id_pet_allergies {
+  padding-bottom: 1rem;
+}
+
+#div_id_pet_primary_vet {
+  padding-bottom: 1rem;
+}
+
+#div_id_tracking_type {
+  padding-bottom: 1rem;
+}
+
+#div_id_pet_weight {
+  padding-bottom: 1rem;
+}
+
+#div_id_pet_temp {
+  padding-bottom: 1rem;
+}
+
+#div_id_pet_glucose {
+  padding-bottom: 1rem;
+}
+
+#div_id_tracking_type {
+  padding-bottom: 1rem;
+}
+
+#div_id_surgery {
+  padding-bottom: 1rem;
+}
+
+#div_id_special_notes_for_next_time {
+  padding-bottom: 1rem;
 }
