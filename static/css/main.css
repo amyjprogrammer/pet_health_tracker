@@ -40,6 +40,10 @@ form .alert ul {
   padding-bottom: 1rem;
 }
 
+#div_id_email {
+  padding-bottom: 1rem;
+}
+
 #div_id_password1 {
   padding-bottom: .5rem;
 }
@@ -58,10 +62,12 @@ form .alert ul {
 
 #div_pet_name {
   padding-bottom: 1.5rem;
+  font-size: 1.5rem;
 }
 
 #div_edit_form {
   padding-bottom: 1.5rem;
+  text-align: center;
 }
 
 #div_id_pet_name {
@@ -126,4 +132,13 @@ form .alert ul {
 
 #div_id_special_notes_for_next_time {
   padding-bottom: 1rem;
+}
+
+a:hover {
+  color: hotpink;
+  text-decoration: underline;
+}
+
+a {
+  text-decoration: none;
 }
