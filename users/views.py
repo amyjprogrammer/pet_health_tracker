@@ -2,9 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 
+from .decorators import unathenticated_user
+
 #Customizing the UserCreationForm form
 from .forms import CreateUserForm
 
+@unathenticated_user
 def register(request):
     """creating a new account"""
     if request.method != "POST":
