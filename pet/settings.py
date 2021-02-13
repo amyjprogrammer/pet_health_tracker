@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'pet_health_tracker',
     'users',
     'crispy_forms',
+    'django_cleanup',
 
     'django.contrib.admin',
     'django.contrib.auth',

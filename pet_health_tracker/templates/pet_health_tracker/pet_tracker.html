@@ -9,7 +9,18 @@
 {% block content %}
 <div class="card border-success">
   <div class="card-header pt-4">
-    <a href="{% url 'pet_health_tracker:pet_names' %}" class="btn btn-primary">Home</a>
+    <div class="row">
+      <div class="col-4">
+        <h2 id="div_pet_tracker">{{pet_name.pet_name}}</h2>
+      </div>
+
+      <div class="col-6">
+        <a href="{% url 'pet_health_tracker:pet_names' %}" class="btn btn-primary">Home</a>
+
+      </div>
+
+    </div>
+
   </div>
 
   <div class="card-body mb-2 pt-4">

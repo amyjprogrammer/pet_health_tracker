@@ -8,7 +8,15 @@
 {% block content %}
 <div class="card border-success">
   <div class="card-header pt-4 ps-4">
-    <h3 >{{ request.user }}'s Pet List</h3>
+    <div class="row">
+      <div class="col-3">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+      </div>
+
+      <div class="col-6 text-center">
+          <h1 id="div_pet_names" >{{ request.user }}'s Pet List</h1>
+      </div>
+    </div>
   </div>
 
     <div class="card-body mb-2 pt-4">

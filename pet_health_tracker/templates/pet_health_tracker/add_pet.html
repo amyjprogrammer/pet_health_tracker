@@ -8,13 +8,13 @@
   <div class="card-header pt-4">
 
       <a class="btn btn-primary" href="{% url 'pet_health_tracker:pet_names' %}" >Home</a>
-    
+
   </div>
 
   <div class="card-body mb-2 pt-4">
     <form action="{% url 'pet_health_tracker:add_pet' %}" method="post">
       {% csrf_token %}
-      {{ form|crispy }}
+      {{ add_form|crispy }}
       <br>
         <button class="btn btn-secondary" name="submit">Add pet</button>
 

@@ -3,9 +3,11 @@ from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 from .models import PetInfo, HealthTracker
 from .forms import PetInfoForm, HealthTrackerForm
+from users.forms import UserUpdateForm, ProfileUpdateForm, CreateUserForm
 
 # home view
 def home(request):
@@ -23,17 +25,17 @@ def add_pet(request):
     """form to add a pet"""
     if request.method != 'POST':
         #no data submitted; creating a blank form
-        form = PetInfoForm()
+        add_form = PetInfoForm()
     else:
         #creating a new pet and verifying the data
-        form = PetInfoForm(data=request.POST)
-        if form.is_valid():
-            add_pet = form.save(commit=False)
+        add_form = PetInfoForm(data=request.POST)
+        if add_form.is_valid():
+            add_pet = add_form.save(commit=False)
             add_pet.owner = request.user
             add_pet.save()
             return redirect('pet_health_tracker:pet_names')
 
-    context = {'form': form}
+    context = {'add_form': add_form}
     return render(request, 'pet_health_tracker/add_pet.html', context)
 
 
@@ -130,15 +132,15 @@ def edit_pet_name(request, pet_id):
 
     if request.method != "POST":
         #show previous pet info
-        form = PetInfoForm(instance=pet_name)
+        edit_form = PetInfoForm(instance=pet_name)
     else:
         #owner can update info
-        form = PetInfoForm(instance=pet_name, data=request.POST)
-        if form.is_valid():
-            form.save()
+        edit_form = PetInfoForm(instance=pet_name, data=request.POST)
+        if edit_form.is_valid():
+            edit_form.save()
             return redirect('pet_health_tracker:pet_health', pet_id = pet_name.id)
 
-    context = {'pet_name': pet_name, "form": form}
+    context = {'pet_name': pet_name, "edit_form": edit_form}
     return render(request, 'pet_health_tracker/edit_pet_name.html', context)
 
 @login_required
@@ -168,4 +170,22 @@ def delete_pet_tracker(request, health_id):
 
 @login_required
 def profile(request):
-    return render(request, 'pet_health_tracker/profile.html')
+
+    if request.method == 'POST':
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, f'Your account has been updated!')
+            return redirect('pet_health_tracker:profile')
+    else:
+        user_form = UserUpdateForm(instance=request.user)
+        profile_form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {
+        'user_form': user_form,
+        'profile_form': profile_form
+    }
+
+    return render(request, 'pet_health_tracker/profile.html', context)

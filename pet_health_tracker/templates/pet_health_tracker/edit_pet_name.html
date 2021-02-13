@@ -15,7 +15,7 @@
   <div class="card-body mb-2 pt-4">
     <form action="{% url 'pet_health_tracker:edit_pet_name' pet_name.id %}" method="post">
       {% csrf_token %}
-      {{ form|crispy }}
+      {{ edit_form|crispy }}
       <br>
           <button class="btn btn-secondary" name="submit">Save changes</button>
           <a href="{% url 'pet_health_tracker:delete_pet_name' pet_name.id %}" class="btn btn-danger">Delete Info</a>
