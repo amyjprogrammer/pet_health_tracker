@@ -4,6 +4,7 @@ from django.urls import path
 
 from . import views
 
+
 app_name = 'pet_health_tracker'
 
 urlpatterns = [
@@ -18,4 +19,5 @@ urlpatterns = [
     path('edit_pet_name/<int:pet_id>/', views.edit_pet_name, name='edit_pet_name'),
     path('delete_pet_name/<int:pet_id>/', views.delete_pet_name, name='delete_pet_name'),
     path('delete_pet_tracker/<int:health_id>/', views.delete_pet_tracker, name='delete_pet_tracker'),
+    path('profile/', views.profile, name='profile'),
     ]

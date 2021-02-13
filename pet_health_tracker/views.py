@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.contrib.auth.models import User
 
 from .models import PetInfo, HealthTracker
 from .forms import PetInfoForm, HealthTrackerForm
@@ -164,3 +165,7 @@ def delete_pet_tracker(request, health_id):
         health.delete()
         context= {"pet_name": pet_name, "health": health}
         return redirect('pet_health_tracker:pet_health', pet_id= pet_name.id)
+
+@login_required
+def profile(request):
+    return render(request, 'pet_health_tracker/profile.html')
