@@ -5,7 +5,7 @@
 <div class="card border-success">
   <div class="card-body mb-2 pt-4">
     <legend class="border-bottom mb-4">Join Today</legend>
-    <form action="{% url 'users:register' %}" method="post">
+    <form method="post">
       {% csrf_token %}
       {{ form|crispy }}
 

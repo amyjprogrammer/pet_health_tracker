@@ -7,7 +7,7 @@
 <div class="card border-success">
   <div class="card-body mb-2 pt-4">
     <legend class="border-bottom mb-4">Log into your account</legend>
-    <form action="{% url 'users:login' %}" method="post">
+    <form method="post">
       {% csrf_token %}
       {{ form|crispy }}
 
@@ -18,7 +18,7 @@
   </div>
   <div class="border-top pt-2 mb-3 ps-3">
     <small class="text-muted">
-        Don't Have An Account? <a class="ml-2" href="{% url 'users:register' %}">Sign Up</a>
+        Don't Have An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up</a>
     </small>
   </div>
 </div>

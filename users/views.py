@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
+from django.contrib.auth import views as auth_views
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
@@ -25,4 +26,4 @@ def register(request):
             return redirect('pet_health_tracker:pet_names')
 
     context = {'form': form}
-    return render(request, 'registration/register.html', context)
+    return render(request, 'users/register.html', context)
