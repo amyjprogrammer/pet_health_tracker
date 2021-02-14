@@ -11,9 +11,11 @@
       {% csrf_token %}
       {{ form|crispy }}
 
-      <button class= "btn btn-primary" name="submit">Log in</button>
+      <button class= "btn btn-success" name="submit">Log in</button>
       <input type="hidden" name="next" value="{% url 'pet_health_tracker:pet_names' %}" />
-
+      <small class="text-muted">
+        <a class="ml-2" href="{% url 'password_reset' %}">Forgot Password?</a>
+      </small>
     </form>
   </div>
   <div class="border-top pt-2 mb-3 ps-3">
