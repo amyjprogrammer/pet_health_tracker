@@ -27,7 +27,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
 ALLOWED_HOSTS = ['pet-health-tracker.herokuapp.com']
 
@@ -126,13 +126,10 @@ USE_TZ = True
 
 
 #Heroku settings
+import os
 import django_heroku
 django_heroku.settings(locals())
 
-if os.environ.get('DEBUG') == 'TRUE':
-    DEBUG = True
-if os.environ.get("DEBUG") == 'FALSE':
-    DEBUG = False
 
 
 # Static files (CSS, JavaScript, Images)
