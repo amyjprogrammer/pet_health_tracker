@@ -19,7 +19,7 @@ class PetInfo(models.Model):
     pet_breed = models.CharField(max_length=200)
     pet_color = models.CharField(max_length=200, blank=True)
     starting_weight = models.FloatField()
-    pet_birthday = models.DateField()
+    pet_birthday = models.DateField(help_text = "Please use the following format: <em>YYYY-MM-DD</em>.")
     pet_allergies = models.CharField(max_length=300, default="none")
     pet_primary_vet = models.CharField(max_length=200)
 
