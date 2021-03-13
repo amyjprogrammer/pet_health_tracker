@@ -36,8 +36,8 @@ class HealthTracker(models.Model):
     Vet_visit = "VT"
     Emergency = "EM"
     tracking_choice = [
-        (Daily_Tracking, 'Daily_Tracking'),
-        (Vet_visit, 'Vet_visit'),
+        (Daily_Tracking, 'Daily Tracking'),
+        (Vet_visit, 'Vet visit'),
         (Emergency, 'Emergency'),
     ]
     tracking_type = models.CharField(

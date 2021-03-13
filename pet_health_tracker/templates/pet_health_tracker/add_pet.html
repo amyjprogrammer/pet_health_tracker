@@ -14,7 +14,35 @@
   <div class="card-body mb-2 pt-4">
     <form action="{% url 'pet_health_tracker:add_pet' %}" method="post">
       {% csrf_token %}
-      {{ add_form|crispy }}
+      {{ add_form.pet_name|as_crispy_field }}
+      <div class="row">
+        <div class="group col-md-6 mb-0">
+          {{ add_form.pet_species|as_crispy_field}}
+        </div>
+        <div class="group col-md-6 mb-0">
+          {{ add_form.pet_sex|as_crispy_field}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="group col-md-6 mb-0">
+          {{ add_form.pet_breed|as_crispy_field}}
+        </div>
+        <div class="group col-md-6 mb-0">
+          {{ add_form.pet_color|as_crispy_field}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="group col-md-6 mb-0">
+          {{ add_form.starting_weight|as_crispy_field}}
+        </div>
+        <div class="group col-md-6 mb-0">
+          {{ add_form.pet_birthday|as_crispy_field}}
+        </div>
+      </div>
+
+      {{ add_form.pet_allergies|as_crispy_field }}
+      {{ add_form.pet_primary_vet|as_crispy_field }}
+
       <br>
         <button class="btn btn-secondary" name="submit">Add pet</button>
 

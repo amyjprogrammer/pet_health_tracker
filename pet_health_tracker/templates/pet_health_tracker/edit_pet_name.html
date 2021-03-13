@@ -13,9 +13,42 @@
   </div>
 
   <div class="card-body mb-2 pt-4">
+
     <form action="{% url 'pet_health_tracker:edit_pet_name' pet_name.id %}" method="post">
       {% csrf_token %}
-      {{ edit_form|crispy }}
+      <div class="row">
+        <div class="group col-md-4 mb-0">
+          {{ edit_form.pet_name|as_crispy_field}}
+        </div>
+        <div class="group col-md-4 mb-0">
+          {{ edit_form.pet_species|as_crispy_field}}
+        </div>
+        <div class="group col-md-4 mb-0">
+          {{ edit_form.pet_sex|as_crispy_field}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="group col-md-4 mb-0">
+          {{ edit_form.pet_breed|as_crispy_field}}
+        </div>
+        <div class="group col-md-4 mb-0">
+          {{ edit_form.pet_color|as_crispy_field}}
+        </div>
+        <div class="group col-md-4 mb-0">
+          {{ edit_form.starting_weight|as_crispy_field}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="group col-md-4 mb-0">
+          {{ edit_form.pet_primary_vet|as_crispy_field}}
+        </div>
+        <div class="group col-md-4 mb-0">
+          {{ edit_form.pet_birthday|as_crispy_field}}
+        </div>
+
+      </div>
+      {{ edit_form.pet_allergies|as_crispy_field }}
+
       <br>
           <button class="btn btn-secondary" name="submit">Save changes</button>
           <a href="{% url 'pet_health_tracker:delete_pet_name' pet_name.id %}" class="btn btn-danger">Delete Info</a>

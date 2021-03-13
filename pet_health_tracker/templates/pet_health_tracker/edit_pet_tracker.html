@@ -15,7 +15,56 @@
   <div class="card-body mb-2 pt-4">
     <form action="{% url 'pet_health_tracker:edit_pet_tracker' health.id %}" method="post">
       {% csrf_token %}
-      {{ form|crispy }}
+
+      {{ form.tracking_type|as_crispy_field }}
+      <div class="row">
+        <div class="group col-md-4 mb-0">
+          {{ form.pet_weight|as_crispy_field}}
+        </div>
+        <div class="group col-md-4 mb-0">
+          {{ form.pet_temp|as_crispy_field}}
+        </div>
+        <div class="group col-md-4 mb-0">
+          {{ form.pet_glucose|as_crispy_field}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="group col-md-4 mb-0">
+          {{ form.solid_stool|as_crispy_field}}
+        </div>
+        <div class="group col-md-4 mb-0">
+          {{ form.healthy_appetite|as_crispy_field}}
+        </div>
+        <div class="group col-md-4 mb-0">
+          {{ form.healthy_coat|as_crispy_field}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="group col-md-4 mb-0">
+          {{ form.range_of_motion_exercises|as_crispy_field}}
+        </div>
+        <div class="group col-md-4 mb-0">
+          {{ form.ongoing_meds|as_crispy_field}}
+        </div>
+        <div class="group col-md-4 mb-0">
+          {{ form.acupuncture|as_crispy_field}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="group col-md-4 mb-0">
+          {{ form.laser_therapy|as_crispy_field}}
+        </div>
+        <div class="group col-md-4 mb-0">
+          {{ form.adjustment|as_crispy_field}}
+        </div>
+        <div class="group col-md-4 mb-0">
+          {{ form.surgery|as_crispy_field}}
+        </div>
+      </div>
+
+      {{ form.special_notes_for_next_time|as_crispy_field }}
+      {{ form.notes|as_crispy_field }}
+
       <br>
           <button class="btn btn-secondary" name="submit">Save changes</button>
 
