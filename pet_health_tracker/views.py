@@ -49,12 +49,12 @@ def pet_health(request, pet_id):
     health_trackers = pet_name.healthtracker_set.order_by('-date_added')
     latest_health_tracker = pet_name.healthtracker_set.order_by('-date_added').all()[:1]
 
+    myFilter = HealthTrackerFilter(request.GET, queryset=health_trackers)
+    health_trackers = myFilter.qs
+
     paginator = Paginator(health_trackers,10)#Show 10 per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-
-    myFilter = HealthTrackerFilter(request.GET, queryset=health_trackers)
-    health_trackers = myFilter.qs
 
     context = {'pet_name': pet_name, 'health_trackers': health_trackers, 'latest_health_tracker': latest_health_tracker, 'myFilter': myFilter, 'page_obj':page_obj}
     return render(request, 'pet_health_tracker/pet_health.html', context)

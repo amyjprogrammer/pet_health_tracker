@@ -314,39 +314,57 @@
 
                         </table>
                     </div>
+                    <div class="pagination">
+                      <span class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1">&laquo; first</a>
+                            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                        {% endif %}
+
+                        <span class="current">
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                        </span>
+
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">next</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                      </span>
+                    </div>
                 </div>
+
             </div>
             <div class="row">
                 <div class="col-xl-4 col-md-6">
                     <div class="card bg-primary text-white mb-4">
                         <div class="card-body">Alternative Treatments</div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <div class="small text-white">
-                              {% for health in page_obj %}
-                                {% if health.acupuncture %}
-                                Acupuncture - {{ health.date_added|date:"M d,Y" }}
-                                <br>
-                                {% endif %}
-                              {% endfor %}
-                              {% for health in page_obj %}
-                                {% if health.laser_therapy %}
-                                Laser Therapy - {{ health.date_added|date:"M d,Y" }}
-                                <br>
-                                {% endif %}
-                              {% endfor %}
-                              {% for health in page_obj %}
-                                {% if health.adjustment %}
-                                Adjustment - {{ health.date_added|date:"M d,Y" }}
-                                <br>
-                                {% endif %}
-                              {% endfor %}
-                              {% for health in page_obj %}
-                                {% if health.range_of_motion_exercises %}
-                                Motion Exercises - {{ health.date_added|date:"M d,Y" }}
-                                <br>
-                                {% endif %}
-                              {% endfor %}
-                            </div>
+                          <div class="small text-white">
+                            {% for health in page_obj %}
+                              {% if health.acupuncture %}
+                              Acupuncture - {{ health.date_added|date:"M d,Y" }}
+                              <br>
+                              {% endif %}
+                            {% endfor %}
+                            {% for health in page_obj %}
+                              {% if health.laser_therapy %}
+                              Laser Therapy - {{ health.date_added|date:"M d,Y" }}
+                              <br>
+                              {% endif %}
+                            {% endfor %}
+                            {% for health in page_obj %}
+                              {% if health.adjustment %}
+                              Adjustment - {{ health.date_added|date:"M d,Y" }}
+                              <br>
+                              {% endif %}
+                            {% endfor %}
+                            {% for health in page_obj %}
+                              {% if health.range_of_motion_exercises %}
+                              Motion Exercises - {{ health.date_added|date:"M d,Y" }}
+                              <br>
+                              {% endif %}
+                            {% endfor %}
+                          </div>
 
                         </div>
                     </div>
@@ -421,23 +439,7 @@
                 </div>
 
             </div>
-            <div class="pagination">
-              <span class="step-links">
-                {% if page_obj.has_previous %}
-                    <a href="?page=1">&laquo; first</a>
-                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-                {% endif %}
 
-                <span class="current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                </span>
-
-                {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}">next</a>
-                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-                {% endif %}
-              </span>
-            </div>
         </div>
     </main>
 
