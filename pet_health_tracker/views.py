@@ -8,6 +8,7 @@ from django.contrib import messages
 from .models import PetInfo, HealthTracker
 from .forms import PetInfoForm, HealthTrackerForm
 from users.forms import UserUpdateForm, ProfileUpdateForm, CreateUserForm
+from .filters import HealthTrackerFilter
 
 # home view
 def home(request):
@@ -46,7 +47,11 @@ def pet_health(request, pet_id):
     check_pet_owner(request, pet_name.owner)
     health_trackers = pet_name.healthtracker_set.order_by('date_added')
     latest_health_tracker = pet_name.healthtracker_set.order_by('-date_added').all()[:1]
-    context = {'pet_name': pet_name, 'health_trackers': health_trackers, 'latest_health_tracker': latest_health_tracker}
+
+    myFilter = HealthTrackerFilter(request.GET, queryset=health_trackers)
+    health_trackers = myFilter.qs
+
+    context = {'pet_name': pet_name, 'health_trackers': health_trackers, 'latest_health_tracker': latest_health_tracker, 'myFilter': myFilter}
     return render(request, 'pet_health_tracker/pet_health.html', context)
 
 @login_required

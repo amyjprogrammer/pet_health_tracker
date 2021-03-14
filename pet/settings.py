@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_cleanup',
     'storages',
+    'django_filters',
 
     'django.contrib.admin',
     'django.contrib.auth',

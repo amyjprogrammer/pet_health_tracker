@@ -10147,3 +10147,9 @@ body {
 .sb-topnav.navbar-light #sidebarToggle {
   color: #212529;
 }
+
+
+form > label {
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
