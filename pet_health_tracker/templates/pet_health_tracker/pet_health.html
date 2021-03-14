@@ -293,7 +293,7 @@
                             </tfoot>
 
                               <tbody>
-                                {% for health in health_trackers %}
+                                {% for health in page_obj %}
                                   <tr>
                                       <td>{{health.date_added|date:"M d,Y"}}</td>
                                       <td>{{health.notes}}</td>
@@ -322,25 +322,25 @@
                         <div class="card-body">Alternative Treatments</div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
                             <div class="small text-white">
-                              {% for health in health_trackers %}
+                              {% for health in page_obj %}
                                 {% if health.acupuncture %}
                                 Acupuncture - {{ health.date_added|date:"M d,Y" }}
                                 <br>
                                 {% endif %}
                               {% endfor %}
-                              {% for health in health_trackers %}
+                              {% for health in page_obj %}
                                 {% if health.laser_therapy %}
                                 Laser Therapy - {{ health.date_added|date:"M d,Y" }}
                                 <br>
                                 {% endif %}
                               {% endfor %}
-                              {% for health in health_trackers %}
+                              {% for health in page_obj %}
                                 {% if health.adjustment %}
                                 Adjustment - {{ health.date_added|date:"M d,Y" }}
                                 <br>
                                 {% endif %}
                               {% endfor %}
-                              {% for health in health_trackers %}
+                              {% for health in page_obj %}
                                 {% if health.range_of_motion_exercises %}
                                 Motion Exercises - {{ health.date_added|date:"M d,Y" }}
                                 <br>
@@ -357,34 +357,34 @@
                         <div class="card-body">Issues from previous forms</div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
                             <div class="small text-white">
-                              {% for health in health_trackers %}
+                              {% for health in page_obj %}
                                 {% if health.solid_stool == False %}
                                 Stool Issue - {{ health.date_added|date:"M d,Y" }}
                                 <br>
                                 {% endif %}
                               {% endfor %}
-                              {% for health in health_trackers %}
+                              {% for health in page_obj %}
                                 {% if health.healthy_appetite == False %}
                                   Loss of Appetite - {{ health.date_added|date:"M d, Y" }}
                                   <br>
                                 {% endif %}
                               {% endfor %}
 
-                              {% for health in health_trackers %}
+                              {% for health in page_obj %}
                                 {% if health.healthy_coat == False %}
                                   Unhealthy coat - {{ health.date_added|date:"M d,Y" }}
                                   <br>
                                 {% endif %}
                               {% endfor %}
 
-                              {% for health in health_trackers %}
+                              {% for health in page_obj %}
                                 {% if pet_name.pet_species == 'Dog' and health.pet_glucose > 250 %}
                                   Pet Glucose High {{ health.pet_glucose }} - {{ health.date_added|date:"M d,Y" }}
                                    <br>
                                 {% endif %}
                               {% endfor %}
 
-                              {% for health in health_trackers %}
+                              {% for health in page_obj %}
                                 {% if pet_name.pet_species == 'Cat' and health.pet_glucose > 120 %}
                                   Pet Glucose High {{ health.pet_glucose }} - {{ health.date_added|date:"M d,Y" }}
                                   <br>
@@ -400,13 +400,13 @@
                         <div class="card-body">Emergency Visits or Surgeries</div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
                             <div class="small text-white">
-                              {% for health in health_trackers %}
+                              {% for health in page_obj %}
                                 {% if health.tracking_type == "EM" %}
                                 Emergency - {{ health.date_added|date:"M d, Y" }}
                                 <br>
                                 {% endif %}
                               {% endfor %}
-                              {% for health in health_trackers %}
+                              {% for health in page_obj %}
                                 {% if health.surgery == True %}
                                   Surgery - {{ health.date_added|date:"M d, Y" }}
                                   <br>
@@ -419,8 +419,25 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
+            <div class="pagination">
+              <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+              </span>
+            </div>
         </div>
     </main>
 
