@@ -1,0 +1,19 @@
+.card, .card-body {
+  text-align: center;
+  width: 80%;
+  margin: auto;
+}
+
+.flex-box-container-cat {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 5px;
+
+}
+
+.flex-box-container-cat img {
+  box-shadow: 8px 7px 25px 3px rgba(0,0,0,0.75);
+  margin:10px;
+}

@@ -8,6 +8,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <span class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Games
+          </span>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{% url 'pet_health_tracker:cat_generator' %}">Random Cat Generator</a></li>
+            <li><a class="dropdown-item" href="#">Cat, Person, Catnip</a></li>
+
+          </ul>
+        </li>
 
       </ul>
       <ul class="navbar-nav ml-auto mb-3 mb-lg-0">

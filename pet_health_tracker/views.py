@@ -15,6 +15,10 @@ from .filters import HealthTrackerFilter
 def home(request):
     return render(request, 'pet_health_tracker/home.html')
 
+#view for my Cat Generator Game
+def cat_generator(request):
+    return render(request, 'pet_health_tracker/cat_generator.html')
+
 @login_required
 def pet_names(request):
     """page showing all the pet names"""

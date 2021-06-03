@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'css/cat.css' %}">
+
+    <title>Cat Generator</title>
+
+  </head>
+  <body>
+    {% include 'pet_health_tracker/nav_bar.html' %}
+    <div class="card border-success">
+      <div class="card-header pt-4">
+        <div class="col-12">
+          <h2 id="cat-header">Awesome Random Cat Generator</h2>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary" onclick='randomGenCat()' id="cat-generator">Generate Cat</button>
+              <button class="btn btn-danger" onclick='deleteAllCat()'>Delete All</button>
+        </div>
+      </div>
+
+      <div class="card-body mb-2 pt-4">
+        <div class="flex-box-container-cat" id="flex-cat-gen">
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="{% static 'js/cat.js' %}"></script>
+  </body>
+</html>

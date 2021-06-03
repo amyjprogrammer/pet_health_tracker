@@ -19,3 +19,4 @@ Audience- any person with a furry friend
  -Python 3.8
  -Bootstrap 4
  -database Postgres 13
+ -JavaScript
