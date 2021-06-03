@@ -4,7 +4,7 @@
   margin: auto;
 }
 
-.flex-box-container-cat {
+.flex-box-container-cat, .flex-box-cat-person-catnip {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

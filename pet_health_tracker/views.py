@@ -19,6 +19,10 @@ def home(request):
 def cat_generator(request):
     return render(request, 'pet_health_tracker/cat_generator.html')
 
+#view for my Cat, Person, Catnip Game
+def cat_person_catnip(request):
+    return render(request, 'pet_health_tracker/cat_person_catnip.html')
+
 @login_required
 def pet_names(request):
     """page showing all the pet names"""
