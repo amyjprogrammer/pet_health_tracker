@@ -4,7 +4,7 @@
   margin: auto;
 }
 
-.flex-box-container-cat, .flex-box-cat-person-catnip {
+.flex-box-container-cat, .flex-box-cat-person-catnip, .btn-replay {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -25,4 +25,8 @@
 .flex-box-cat-person-catnip img:hover {
   margin: 5px;
   box-shadow: 2px 3px 14px 6px #2440FF;
+}
+
+.btn-replay {
+  padding-top: 50px;
 }

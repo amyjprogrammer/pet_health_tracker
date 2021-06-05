@@ -94,6 +94,14 @@ function finalScreen(humanChoice, computerChoice, endMessage){
   document.getElementById('cat-person-catnip').appendChild(messageDiv);
   document.getElementById('cat-person-catnip').appendChild(catDiv);
 
-
-
+  //button to restart the Game
+  let btn = document.createElement('button');
+  btn.style.backgroundColor='#33cc33';
+  btn.innerHTML = 'Replay';
+  btn.type = 'submit';
+  btn.name = 'Replay';
+  btn.onclick = function(){
+    location.reload();
+  };
+  document.getElementById('btn-replay').appendChild(btn);
 }
