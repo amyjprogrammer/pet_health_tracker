@@ -32,7 +32,7 @@ function playGame(yourChoice){
   console.log(verifyWinner);
   let endMessage = finalMessage(verifyWinner);
   console.log(endMessage);
-  //let finalScreen = lastScreen(humanChoice, computerChoice, endMessage)
+  finalScreen(humanChoice, computerChoice, endMessage);
 }
 
 //computer picking a random number 0, 1, 2
@@ -69,4 +69,31 @@ function finalMessage(verifyWinner){
   }
 }
 
-//function finalScreen(humanChoice, computerChoice, endMessage){}
+function finalScreen(humanChoice, computerChoice, endMessage){
+  //creating a database for the pictures
+  var picDatabase = {
+    'cat': document.getElementById('cat').src,
+    'person': document.getElementById('person').src,
+    'catnip': document.getElementById('catnip').src
+  }
+
+  //removing all the pictures
+  document.getElementById('cat').remove();
+  document.getElementById('person').remove();
+  document.getElementById('catnip').remove();
+
+  let personDiv = document.createElement('div');
+  let catDiv = document.createElement('div');
+  let messageDiv = document.createElement('div');
+
+  personDiv.innerHTML = "<img src='" + picDatabase[humanChoice] + "' height=150 width=150 style='box-shadow: 0px 10px 25px rgba(37, 50, 233, 1)'>";
+  messageDiv.innerHTML = "<h1 style='color: " + endMessage['color'] + "; font-size: 60px; padding: 30px; '>" + endMessage['message'] + "</h1>";
+  catDiv.innerHTML = "<img src='" + picDatabase[computerChoice] + "' height=150 width=150 style='box-shadow: 0px 10px 25px rgba(255, 43, 63)'>";
+
+  document.getElementById('cat-person-catnip').appendChild(personDiv);
+  document.getElementById('cat-person-catnip').appendChild(messageDiv);
+  document.getElementById('cat-person-catnip').appendChild(catDiv);
+
+
+
+}
